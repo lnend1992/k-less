@@ -1,0 +1,463 @@
+//=============================================
+
+// * Description Css kk-less
+// * Powered By Mr.K
+// * QQ 908526866
+// * E-mail lnend@sina.cn
+ 
+// Please respect the developers, thank you.
+ 
+//=============================================
+
+//reset
+.reset(){
+
+    /* Reset system css */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    html{
+        text-size-adjust:none
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    /* from reset */
+    input::-moz-focus-inner { border:none; padding:0; } 
+    input::-ms-clear {display: none;}
+    input,select,label,button{padding:0;margin:0;vertical-align:middle;border:none;background:none;font-size:12px;font-family:'Microsoft Yahei';}
+    input[type="text"], input[type="password"], textarea { outline-style:none; -webkit-appearance:none; }
+    textarea { resize:none; }
+    input:focus, button:focus, textarea:focus, select:focus {outline: none;}
+
+    /* aLink reset */
+    a:link,a:visited {text-decoration:none; cursor:pointer; outline:none;color:#333;}
+    a:hover,a:active {text-decoration:none;-webkit-transition:color .1s linear , background-color .1s linear;-moz-transition:color .1s linear , background-color .1s linear;-o-transition:color .1s linear , background-color .1s linear;-ms-transition:color .1s linear , background-color .1s linear;transition:color .1s linear , background-color .1s linear; cursor:pointer;}
+
+}
+
+//clear float
+.clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+    overflow: hidden;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+//text-ellipsis
+.text-ellipsis(){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.opacity(@opacity: 80) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}
+
+.rgba(@red, @green, @blue, @alpha:1){
+    @filtercolor:`(_f = function(d){ var v = (parseInt(d)|0).toString(16);return v.length<2 ? "0"+v : v;},
+                                    '#'+_f(@{alpha}*255) + _f(@{red}) + _f(@{green})+ _f(@{blue}))`;
+    
+    background-color: ~'rgba(@{red},@{green},@{blue},@{alpha})';
+    -ms-filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{filtercolor}',endColorstr='@{filtercolor}')";
+    filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{filtercolor}',endColorstr='@{filtercolor}')";        
+}
+
+.font-size(@size: 16) {
+  @rem: (@size / 10);
+  font-size: @size * 1px;
+  font-size: ~"@{rem}rem";
+}
+
+.center(@position: relative, @display: block) {
+  display: @display;
+  position: @position;
+  left: 50%;
+  .transform(translateX(-50%));
+}
+
+//浮动
+.float(@type: left){
+    float: @type;
+}
+.fl(@f:left;){
+    float: @f;
+    display: inline;
+}
+.fr(@f:right){
+  float: @f;
+  display: inline;
+}
+
+//全局定位
+.pos (r){
+  position: relative;
+}
+.pos (a){
+  position: absolute;
+}
+.pos (f){
+  position: fixed;
+}
+.pos-box(@w:500px,@h:400px,@pos:absolute){
+  width: @w;
+  height: @h;
+  position: absolute;
+  left:0;
+  top:0;
+}
+//定位居中
+.pos-box-cc(@w:600px,@h:360px,@pos:absolute){
+  width: @w;
+  height: @h;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -@w / 2;
+  margin-top: -@h / 2;
+}
+
+//布局
+.bc(){
+  margin-left: auto;
+  margin-right: auto;
+}
+.bc-d(@w:500px){
+  width: @w;
+  .bc();
+}
+.wh(@w){
+  width: @w;
+  height: @w;
+}
+
+//display
+.d-b(){
+  display: block;
+}
+.d-i(){
+  display: inline;
+}
+.d-ib(){
+  display: inline-block;
+}
+.d-ib7(){
+  display: inline-block;
+  *display: inline;
+  *zoom:1;
+}
+.d-t(){
+  display:table;
+}
+.d-n(){
+  display: none;
+}
+
+//background
+.bg(@url)
+{
+  background: url(@url) 0 0 repeat;
+}
+.bg-m(@url,@x:0,@y:0,@repeat:no-repeat)
+{
+  background: url(@url) @x @y @repeat;
+}
+.bgi(@url)
+{
+  background-image: url(@url);
+}
+.bgp(@x:0,@y:0){
+  background-position: @x @y;
+}
+.bgr-r(){
+  background-repeat: repeat;
+}
+.bgr-x(){
+  background-repeat: repeat-x;
+}
+.bgr-y(){
+  background-repeat: repeat-y;
+}
+.bgr-no(){
+  background-repeat: no-repeat;
+}
+
+//lis
+.list-sn(){
+  list-style: none;
+}
+//text
+.text-n(@p: none){
+  text-decoration: @p;
+}
+//添加下划线
+.tu(){
+  text-decoration: underline;
+}
+.tn(){
+  text-decoration: none;
+}
+.tl(){
+  text-align: left;
+}
+.text-l(){
+  text-align: left;
+}
+.tc(){
+  text-align: center;
+}
+.text-c(){
+  text-align: center;
+}
+.tr(){
+  text-align: right;
+}
+.text-r(){
+  text-align: right;
+}
+
+//Css3
+.pre(@style, @value){
+    -webkit-@{style}: @value;
+       -moz-@{style}: @value;
+        -ms-@{style}: @value;
+         -o-@{style}: @value;
+            @{style}: @value;
+}
+
+.cssbox(){
+
+    /* display box */
+
+    /* 开启弹性盒子 */
+    .disbox{
+        display:-webkit-box;
+        display:-moz-box;
+        display:-ms-box;
+        display:box;
+    }
+
+    /* 定义子盒子显示方式 h水平, v垂直 */
+    .box-orient-h{
+        .pre(box-orient, horizontal);
+    }
+    .box-orient-v{
+        .pre(box-orient, vertical);
+    }
+
+    /* 分配盒子空间 */
+    /* 子盒子的大小=父盒子的大小*子盒子的box-flex/所有子盒子的box-flex值的和 */
+    .box-flex-1{
+        .pre(box-flex, 1);
+    }
+    .box-flex-2{
+        .pre(box-flex, 2);
+    }
+    .box-flex-3{
+        .pre(box-flex, 3);
+    }
+    .box-flex-4{
+        .pre(box-flex, 4);
+    }
+    .box-flex-5{
+        .pre(box-flex, 5);
+    }
+
+    /* 管理水平方向上的空间分布 */
+    /* 可利用的空间在父盒子的两侧平均分配 */
+    .box-pack-center{
+        .pre(box-pack, center);
+    }
+    /* 所有盒子在父盒子的左侧，余下的空间在右侧 */
+    .box-pack-start{
+        .pre(box-pack, start);
+    }
+    /* 所有盒子在父盒子的右侧，余下的空间在左侧 */
+    .box-pack-end{
+        .pre(box-pack, end);
+    }
+    /* 余下的空间在盒子间平均分配 */
+    .box-pack-justify{
+        .pre(box-pack, justify);
+    }
+
+    /* 管理垂直方向上的空间分布 */
+    /* 可用空间平均分配，上面一半，下面一半 */
+    .box-align-center{
+        .pre(box-align, center);
+    }
+    /* 每个盒子沿父盒子的上边缘排列，余下的空间位于底部 */
+    .box-align-start{
+        .pre(box-align, start);
+    }
+    /* 每个盒子沿父盒子的下边缘排列，余下的空间位于顶部 */
+    .box-align-end{
+        .pre(box-align, end);
+    }
+    /* 所有盒子沿着它们的基线排列，余下的空间可前可后 */
+    .box-align-baseline{
+        .pre(box-align, baseline);
+    }
+    /* 每个盒子的高度调整到适合父盒子的高度 */
+    .box-align-stretch{
+        .pre(box-align, streth);
+    }
+
+    /* 盒子内容居中显示 */
+    .box-center{
+        .box-pack-center;
+        .box-align-center;
+    }
+
+    /* 避免溢出,设置换行显示 */
+    .box-lines{
+        .pre(box-lines, multiple);
+    }
+
+}
+
+.user-select(@select: auto) {
+    .pre(user-select, @select);
+}
+
+.box-sizing(@def: border-box) {
+    .pre(box-sizing, @def);
+}
+
+//圆角
+.border-radius(@radius: 5px) {
+    .pre(border-radius, @radius);
+}
+
+//盒子阴影
+.box-shadow(@def: 0 6px 6px -6px rgba(0,0,0,0.80)) {
+    .pre(box-shadow, @def);
+}
+
+//文字阴影
+.text-shadow(@tsval: 0px 1px 0px rgba(255,255,255,0.80)) {
+    .pre(text-shadow, @tsval);
+}
+
+//过度
+.transition(@trans: all 0.2s ease) {
+    .pre(transition, @trans);
+}
+
+//缩放
+.scale(@size) {
+    .pre(transform, scale(@size));
+}
+
+//旋转
+.rotate(@deg) {
+    .pre(transform, rotate(@deg));
+}
+
+//2d转换
+.translate(@x, @y) {
+    .pre(transform, translate(@x, @y));
+}
+
+//3d转换
+.translate3d(@x, @y, @z){
+    .pre(transform, translate(@x, @y, @z));
+}
+
+//倾斜
+.skew(@x, @y) {
+    -webkit-backface-visibility: hidden;
+    .pre(transform, skew(@x, @y));
+}
+
+//透视视图
+.init3d(@style: preserve-3d, @backface: hidden) {
+    .pre(transform-style, @style);
+    .pre(backface-visibility, @backface);
+}
+
+
+.transform(@vals) {
+  .pre(transform, @vals);
+  -webkit-backface-visibility: hidden;
+}
+
+//渐变
+#gradient {
+    .horizontal(@startColor: #555, @endColor: #333, @img: none) {
+        background: @endColor @img;
+        background-size: 100% 100%;
+        background: @img, -webkit-linear-gradient(left,  @startColor,  @endColor);
+        background: @img, linear-gradient(90deg,  @startColor,  @endColor);
+    }
+    .vertical(@startColor: #555, @endColor: #333, @img: none) {
+        background: @endColor @img;
+        background-size: 100% 100%;
+        background: @img, -webkit-linear-gradient(top,  @startColor,  @endColor);
+        background: @img, linear-gradient(180deg,  @startColor,  @endColor);
+    }
+    .radial(@startColor, @endColor, @img: none) {
+        background: @img, @endColor;
+        background: @img, -webkit-radial-gradient(center, ellipse cover,  @startColor, @endColor);
+        background: @img, -o-radial-gradient(center, ellipse cover,  @startColor, @endColor);
+        background: @img, -ms-radial-gradient(center, ellipse cover,  @startColor, @endColor);
+        background: @img, radial-gradient(ellipse at center,  @startColor, @endColor);
+    }
+    .custom(@arguments) {
+        background-size: 100% 100%;
+        background: -webkit-linear-gradient(@arguments);
+        background: linear-gradient(@arguments);
+    }
+}
+
+
+
